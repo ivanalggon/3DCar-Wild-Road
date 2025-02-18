@@ -164,10 +164,16 @@ public class CarController : MonoBehaviour
             other.gameObject.SetActive(false);
             Vector3 bloodPosition = other.transform.position + Vector3.up * 1.0f;
             Instantiate(bloodEffect, bloodPosition, Quaternion.identity);
+
+            CheckpointManager manager = FindObjectOfType<CheckpointManager>();
+            // sumar 5 segundos al tiempo de la vuelta actual
+            manager.tiempoInicioVuelta -= 5f;
+
         }
         else if (other.CompareTag("Diamond"))
         {
-            other.gameObject.SetActive(false);
+            CheckpointManager manager = FindObjectOfType<CheckpointManager>();
+            manager.tiempoInicioVuelta += 1f;
         }
     }
 }

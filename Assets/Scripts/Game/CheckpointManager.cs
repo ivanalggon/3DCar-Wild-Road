@@ -18,7 +18,7 @@ public class CheckpointManager : MonoBehaviour
     public TextMeshProUGUI textoTiempoActualFirstPerson;
     public TextMeshProUGUI textoTiempoActualThirdPerson;
 
-    private float tiempoInicioVuelta; // Inicio de la vuelta actual
+    public float tiempoInicioVuelta; // Inicio de la vuelta actual
     private List<float> tiemposVueltas = new List<float>(); // Lista de tiempos de vuelta
     private bool carreraEnCurso = true; // Control de la carrera
 
