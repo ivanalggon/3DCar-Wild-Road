@@ -172,6 +172,7 @@ public class CarController : MonoBehaviour
         }
         else if (other.CompareTag("Diamond"))
         {
+            other.gameObject.SetActive(false);
             CheckpointManager manager = FindObjectOfType<CheckpointManager>();
             manager.tiempoInicioVuelta += 1f;
         }
