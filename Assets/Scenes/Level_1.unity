@@ -3513,13 +3513,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.77197725, y: 0.26997733, z: 0.41631657, w: -0.3972958}
+  m_LocalRotation: {x: 0.2405168, y: 0.14239801, z: 0.8665648, w: 0.41344902}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -56.95, y: -231.745, z: -189.076}
+  m_LocalEulerAnglesHint: {x: -2.746, y: -327.642, z: -231.81}
 --- !u!114 &712959433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41459,7 +41459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 1876621912}
   starPrefab: {fileID: 409816753361507191, guid: 2d27f3cde0b79374ababb3fb1ad436af, type: 3}
-  numberStars: 100
+  numberStars: 1000
   skyRadius: 500
 --- !u!4 &874520810
 Transform:
