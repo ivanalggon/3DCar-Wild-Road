@@ -5,18 +5,18 @@ using TMPro;
 
 public class CheckpointManager : MonoBehaviour
 {
+    private List<GameObject> animalesGuardados = new List<GameObject>();
+    private List<GameObject> diamantesGuardados = new List<GameObject>();
+
     public List<GameObject> checkpoints; // Lista de checkpoints en el mapa
     private HashSet<GameObject> checkpointsPasados = new HashSet<GameObject>(); // Checkpoints alcanzados
     private int vueltasCompletadas = 0; // Contador de vueltas
     public int vueltasObjetivo = 3; // Número total de vueltas
 
     // TextMeshPro para mostrar información en pantalla
-    public TextMeshProUGUI textoVueltasFirstPerson;
-    public TextMeshProUGUI textoVueltasThirdPerson;
-    public TextMeshProUGUI textoTiemposFirstPerson;
-    public TextMeshProUGUI textoTiemposThirdPerson;
-    public TextMeshProUGUI textoTiempoActualFirstPerson;
-    public TextMeshProUGUI textoTiempoActualThirdPerson;
+    public TextMeshProUGUI textoVueltas;
+    public TextMeshProUGUI textoTiempos;
+    public TextMeshProUGUI textoTiempoActual;
 
     public float tiempoInicioVuelta; // Inicio de la vuelta actual
     private List<float> tiemposVueltas = new List<float>(); // Lista de tiempos de vuelta
@@ -25,18 +25,18 @@ public class CheckpointManager : MonoBehaviour
     private void Start()
     {
         // Inicializar UI
-        textoVueltasFirstPerson.text = "LAPS 0/" + vueltasObjetivo;
-        textoVueltasThirdPerson.text = "LAPS 0/" + vueltasObjetivo;
-        textoTiemposFirstPerson.text = "";
-        textoTiemposThirdPerson.text = "";
-        textoTiempoActualFirstPerson.text = "00:00.00";
-        textoTiempoActualThirdPerson.text = "00:00.00";
+        textoVueltas.text = "LAPS 0/" + vueltasObjetivo;
+        textoTiempos.text = "";
+        textoTiempoActual.text = "00:00.00";
 
         // Desactivar el primer checkpoint al inicio
         checkpoints[0].SetActive(false);
 
         // Iniciar el temporizador para la primera vuelta
         tiempoInicioVuelta = Time.time;
+
+        animalesGuardados.AddRange(GameObject.FindGameObjectsWithTag("Animal"));
+        diamantesGuardados.AddRange(GameObject.FindGameObjectsWithTag("Diamond"));
     }
 
     private void Update()
@@ -47,8 +47,7 @@ public class CheckpointManager : MonoBehaviour
             float tiempoActual = Time.time - tiempoInicioVuelta;
             string tiempoFormateado = FormatoTiempo(tiempoActual);
 
-            textoTiempoActualFirstPerson.text = tiempoFormateado;
-            textoTiempoActualThirdPerson.text = tiempoFormateado;
+            textoTiempoActual.text = tiempoFormateado;
         }
     }
 
@@ -110,8 +109,7 @@ public class CheckpointManager : MonoBehaviour
     void ActualizarTextoVueltas()
     {
         string textoVueltas = "LAPS " + vueltasCompletadas + "/" + vueltasObjetivo;
-        textoVueltasFirstPerson.text = textoVueltas;
-        textoVueltasThirdPerson.text = textoVueltas;
+        this.textoVueltas.text = textoVueltas;
     }
 
     void ActualizarTextoTiempos()
@@ -122,8 +120,7 @@ public class CheckpointManager : MonoBehaviour
             textoTiempos += FormatoTiempo(tiempo) + "\n";
         }
 
-        textoTiemposFirstPerson.text = textoTiempos;
-        textoTiemposThirdPerson.text = textoTiempos;
+        this.textoTiempos.text = textoTiempos;
     }
 
     string FormatoTiempo(float tiempo)
@@ -141,5 +138,17 @@ public class CheckpointManager : MonoBehaviour
 
         // Desactivar el primer checkpoint para la siguiente vuelta
         checkpoints[0].SetActive(false);
+
+        // set active true a todos los animales y diamantes
+        GameObject[] animales = GameObject.FindGameObjectsWithTag("Animal");
+        foreach (GameObject animal in animalesGuardados)
+        {
+            if (animal != null) animal.SetActive(true);
+        }
+
+        foreach (GameObject diamante in diamantesGuardados)
+        {
+            if (diamante != null) diamante.SetActive(true);
+        }
     }
 }

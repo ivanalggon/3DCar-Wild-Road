@@ -5,8 +5,21 @@ using UnityEngine.UI;  // Para manejar la imagen del fundido
 
 public class MainMenu : MonoBehaviour
 {
-    public Image fadeImage; // Imagen negra que se usará para el fundido
-    public float fadeSpeed = 1f; // Velocidad del fundido
+    // Audio de fondo del menú principal
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
+    public void Start()
+    {
+        Time.timeScale = 1f;
+
+        if (audioSource != null && audioClip != null)
+        {
+            audioSource.clip = audioClip;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+    }
 
     public void OnclickMenu()
     {
@@ -16,10 +29,12 @@ public class MainMenu : MonoBehaviour
     public void OnclickPlay()
     {
         SceneManager.LoadScene("Level_1");
+        audioSource.Stop();
     }
 
     public void OnclickExit()
     {
+        audioSource.Stop();
         Application.Quit();
     }
 }

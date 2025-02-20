@@ -43,6 +43,9 @@ public class PauseMenu : MonoBehaviour
 
         // Detener el tiempo (Game Paused)
         Time.timeScale = 0f;
+
+        // Pausar audio
+        AudioListener.pause = true;
     }
 
     // Reanudar el juego
@@ -55,6 +58,9 @@ public class PauseMenu : MonoBehaviour
 
         // Reanudar el tiempo
         Time.timeScale = 1f;
+
+        // Reanudar audio
+        AudioListener.pause = false;
     }
 
     public void OnclickMenu()
